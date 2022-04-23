@@ -4,6 +4,7 @@ package filez
 // A tiny Wrapper Around The OS Stat Method
 
 import (
+	"fmt"
 	"os"
 	"time"
 )
@@ -12,7 +13,7 @@ func FileSize(file string) int {
 
 	f, err := os.Stat(file)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
 	fsize := int(f.Size())
@@ -22,7 +23,7 @@ func FileSize(file string) int {
 func ModTime(file string) time.Time {
 	f, err := os.Stat(file)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
 	return f.ModTime()
@@ -31,7 +32,7 @@ func ModTime(file string) time.Time {
 func FileMode(file string) os.FileMode {
 	f, err := os.Stat(file)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
 	return f.Mode()
@@ -40,7 +41,7 @@ func FileMode(file string) os.FileMode {
 func FileName(file string) string {
 	fname, err := os.Stat(file)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	name := fname.Name()
 	return name
