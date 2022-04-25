@@ -4,45 +4,44 @@ package filez
 // A tiny Wrapper Around The OS Stat Method
 
 import (
-	"fmt"
 	"os"
 	"time"
 )
 
-func FileSize(file string) int {
+func FileSize(file string) (int, error) {
 
 	f, err := os.Stat(file)
 	if err != nil {
-		fmt.Println(err)
+		return 0, err
 	}
 
 	fsize := int(f.Size())
-	return fsize
+	return fsize, nil
 }
 
-func ModTime(file string) time.Time {
+func ModTime(file string) (time.Time, error) {
 	f, err := os.Stat(file)
 	if err != nil {
-		fmt.Println(err)
+		return time.Time{}, err
 	}
 
-	return f.ModTime()
+	return f.ModTime(), nil
 }
 
-func FileMode(file string) os.FileMode {
+func FileMode(file string) (os.FileMode, error) {
 	f, err := os.Stat(file)
 	if err != nil {
-		fmt.Println(err)
+		return 0, err
 	}
 
-	return f.Mode()
+	return f.Mode(), nil
 }
 
-func FileName(file string) string {
+func FileName(file string) (string, error) {
 	fname, err := os.Stat(file)
 	if err != nil {
-		fmt.Println(err)
+		return "", err
 	}
 	name := fname.Name()
-	return name
+	return name, nil
 }
