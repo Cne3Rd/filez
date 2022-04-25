@@ -12,6 +12,12 @@ import (
     "github.com/Cne3Rd/filez"
 )
 
-fpath := "C:\\users\\views\\bar.txt"
-f := filez.FileMode(fpath)
+file := "C:\\users\\views\\bar.txt"
+f, err := filez.FileMode(file)
+if err != nil {
+	fmt.Println(err)
+}
+
+fmt.Println(f)
+
 ```
